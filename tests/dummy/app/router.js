@@ -6,6 +6,9 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('global-only');
+  this.route('local-only');
+  this.route('local-wins');
 });
 
 export default Router;
