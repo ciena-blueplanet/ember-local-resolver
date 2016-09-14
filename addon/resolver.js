@@ -15,8 +15,6 @@ Resolver.reopen({
     var modulePrefix = this.namespace.modulePrefix;
     var podModulePrefix = this.namespace.podModulePrefix;
 
-    // pods-local-only/-components/x-local/template
-
     // Local lookup only applies to targets referenced in a template
     if (parsedSource.type !== 'template') {
       return parsedTarget.type + ':' + sourceName + '/' + targetName;
