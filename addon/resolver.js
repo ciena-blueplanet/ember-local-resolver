@@ -1,10 +1,6 @@
 var Resolver = require('ember-resolver')['default'];
 
 Resolver.reopen({
-  // General note: findModuleName seems like it could short-circuit
-  // (continue) the loop quite a bit, why not do that?  This has to
-  // be running frequently...
-
   expandLocalLookup: function(targetFullName, sourceFullName) {
     var parsedTarget = this.parseName(targetFullName);
     var parsedSource = this.parseName(sourceFullName);
