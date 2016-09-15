@@ -1,0 +1,11 @@
+{
+  "globals": {
+    "chai": true,
+    "Ember": true,
+    "sinon": true,
+    "andThen": false,
+    "click": false,
+    "currentPath": false,
+    "visit": false
+  }
+}

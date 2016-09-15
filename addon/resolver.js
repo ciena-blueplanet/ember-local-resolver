@@ -1,49 +1,46 @@
-var Resolver = require('ember-resolver')['default']
+const Resolver = require('ember-resolver')['default']
 
 Resolver.reopen({
   expandLocalLookup: function (targetFullName, sourceFullName) {
-    var parsedTarget = this.parseName(targetFullName)
-    var parsedSource = this.parseName(sourceFullName)
+    const modulePrefix = this.namespace.modulePrefix
+    const podModulePrefix = this.namespace.podModulePrefix
+    const parsedTarget = this.parseName(targetFullName)
+    const parsedSource = this.parseName(sourceFullName)
 
-    var sourceName = parsedSource.fullNameWithoutType
-    var targetName = parsedTarget.fullNameWithoutType
+    let sourceName = parsedSource.fullNameWithoutType
+    let targetName = parsedTarget.fullNameWithoutType
 
-    var modulePrefix = this.namespace.modulePrefix
-    var podModulePrefix = this.namespace.podModulePrefix
-
-    // Local lookup only applies to targets referenced in a template
+    // Local lookup only applies to targets referenced from a template
     if (parsedSource.type !== 'template') {
-      return parsedTarget.type + ':' + sourceName + '/' + targetName
+      return `${parsedTarget.type}:${sourceName}/${targetName}`
     }
 
-    // Strip modulePrefix from source's module name
-    if (sourceName.slice(0, podModulePrefix.length) === podModulePrefix) {
-      sourceName = sourceName.slice(podModulePrefix.length + 1, -('/template/hbs'.length)) // Remove 'template/hbs' from the end
-      sourceName = sourceName + '/-components'
-    } else if (sourceName.slice(0, modulePrefix.length) === modulePrefix) {
-      sourceName = sourceName.slice(modulePrefix.length + 1 + 10, -4)
-      // Strip template from the source's module name
-      // if (sourceName.slice(0, 9) === 'templates') {
-      //   sourceName = sourceName.slice(10)
-      // }
+    // Remove the prefix and extension from the source module name
+    if (sourceName.startsWith(podModulePrefix)) {
+      const prefixLength = `${podModulePrefix}/`.length
+      const extensionLength = '/template/hbs'.length
 
-      // // Strip hbs from the source's module name
-      // if (sourceName.slice(-3) === 'hbs') {
-      //   sourceName = sourceName.slice(0, -4);
-      // }
+      sourceName = sourceName.slice(prefixLength, -extensionLength)
+
+      // In a pods structure local components are nested in a -components directory
+      // to align with the module unification RFC
+      // https://github.com/dgeb/rfcs/blob/module-unification/text/0000-module-unification.md#private-collections
+      sourceName = `${sourceName}/-components`
+    } else if (sourceName.startsWith(modulePrefix)) {
+      const prefixLength = `${modulePrefix}/templates/`.length
+      const extensionLength = '/hbs'.length
+
+      sourceName = sourceName.slice(prefixLength, -extensionLength)
     }
 
-    // Trying to lookup a component's template from inside a template
-    if (parsedTarget.type === 'template' && targetName.slice(0, 11) === 'components/') {
-      // Slice off 'components/'
-      targetName = targetName.slice(11)
+    // Remove the prefix from the target module name
+    if (parsedTarget.type === 'template' && targetName.startsWith('components')) {
+      const prefixLength = 'components/'.length
+
+      targetName = targetName.slice(prefixLength)
     }
 
-    // If the target is anything other than template, we haven't modified anything in the targetName
-    // If the source is anything other than template, we haven't modified anything in the sourceName or targetName
-    var result = parsedTarget.type + ':' + sourceName + '/' + targetName
-
-    return result
+    return `${parsedTarget.type}:${sourceName}/${targetName}`
   }
 })
 

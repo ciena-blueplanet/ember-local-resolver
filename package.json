@@ -1,7 +1,7 @@
 {
   "name": "ember-local-component-resolver",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.1.0",
+  "description": "Turn {{a-route/local-component}} into {{local-component}}",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -13,29 +13,31 @@
     "eslint": "eslint *.js addon app blueprints config tests --fix",
     "lint": "npm run eslint"
   },
-  "repository": "",
+  "repository": "https://github.com/ciena-blueplanet/ember-local-component-resolver",
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 5.3.0"
   },
-  "author": "",
+  "author": "Steven Glanzer (https://github.com/sglanzer)",
+  "contributors": [
+    "Robert Jackson (https://github.com/rwjblue)"
+  ],
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",
-    "ember-ajax": "0.7.1",
     "ember-cli": "2.5.0",
     "ember-cli-app-version": "^1.0.0",
+    "ember-cli-code-coverage": "0.3.0",
     "ember-cli-dependency-checker": "^1.2.0",
     "ember-cli-htmlbars": "^1.0.3",
     "ember-cli-htmlbars-inline-precompile": "^0.3.1",
     "ember-cli-inject-live-reload": "^1.4.0",
-    "ember-cli-jshint": "^1.0.0",
-    "ember-cli-qunit": "^1.4.0",
+    "ember-cli-mocha": "0.10.4",
     "ember-cli-release": "0.2.8",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^1.2.0",
-    "ember-data": "^2.5.0",
     "ember-disable-prototype-extensions": "^1.1.0",
     "ember-export-application-global": "^1.0.5",
+    "ember-hook": "1.3.2",
     "ember-load-initializers": "^0.5.1",
     "ember-resolver": "^2.0.3",
     "ember-try": "^0.2.2",
@@ -44,7 +46,8 @@
     "loader.js": "^4.0.1"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "ember-resolver"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.1.6"

@@ -10,7 +10,7 @@
 [ember-observer-badge]: http://emberobserver.com/badges/ember-local-component-resolver.svg "Ember Observer score"
 [ember-observer-badge-url]: http://emberobserver.com/addons/ember-local-component-resolver
 
-[ember-img]: https://img.shields.io/badge/ember-1.12.2+-orange.svg "Ember 1.12.2+"
+[ember-img]: https://img.shields.io/badge/ember-2.0.0+-orange.svg "Ember 2.0.0+"
 
 [bithound-img]: https://www.bithound.io/github/ciena-blueplanet/ember-local-component-resolver/badges/score.svg "bitHound"
 [bithound-url]: https://www.bithound.io/github/ciena-blueplanet/ember-local-component-resolver
