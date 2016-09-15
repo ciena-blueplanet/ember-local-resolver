@@ -41,9 +41,36 @@ Resolve component paths locally then globally to avoid the need for absolute pat
 ember install ember-local-component-resolver
 ```
 
-## API and Examples
+## Usage
 
-TODO
+Change the resolver import in app/resolver.js from `'ember-resolver'` to `'ember-local-component-resolver'`
+
+This addon makes the most sense in a pods structure.  If you want to have components that are effectively
+"private" to a route simply add a `-components` directory to your route and add any local components in a
+pod format within that directory.
+
+For example, given a route `user-accounts` if you want to have a local `user-avatar` component then your
+pods structure would look something like:
+
+```
+user-accounts/
+user-accounts/route.js
+user-accounts/template.hbs
+user-accounts/-components/
+user-accounts/-components/user-avatar/
+user-accounts/-components/user-avatar/component.js
+user-accounts/-components/user-avatar/template.hbs
+```
+
+Normally you would have to reference a component nested in a route using a full path:
+
+`{{user-accounts/-components/user-avatar}}`
+
+But with this resolver these local components can be referenced simply as:
+
+`{{user-avatar}}`
+
+when within the `user-accounts` template
 
 ## Development
 ### Setup
