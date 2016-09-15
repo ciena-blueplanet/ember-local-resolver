@@ -1,6 +1,6 @@
-# Ember-local-component-resolver
+# ember-local-component-resolver
 
-This README outlines the details of collaborating on this Ember addon.
+Resolve component paths locally then globally to avoid the need for absolute paths
 
 ## Installation
 
