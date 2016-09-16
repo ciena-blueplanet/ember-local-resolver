@@ -1,3 +1,9 @@
+import Ember from 'ember'
+const {
+  Logger: {
+    warn
+  }
+} = Ember
 const Resolver = require('ember-resolver')['default']
 
 Resolver.reopen({
@@ -11,8 +17,13 @@ Resolver.reopen({
     let targetName = parsedTarget.fullNameWithoutType
     const targetType = parsedTarget.type
 
-    // Local lookup only applies to targets referenced from a template
     if (parsedSource.type !== 'template') {
+      warn(`
+        Local lookup is currently not implemented outside of templates.
+        If you have an additional use case, please open an issue on
+        https://github.com/ciena-blueplanet/ember-local-resolver/issues
+        to discuss.
+      `)
       return `${parsedTarget.type}:${sourceName}/${targetName}`
     }
 

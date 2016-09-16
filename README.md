@@ -108,6 +108,10 @@ Unfortunately, we don't have a fancy generator to make new local components / he
 so the easiest way to handle this is to just move a generated directory into your local `-components` / 
 `-helpers` path.
 
+## Credits
+
+Thanks to @rwjblue for the initial gist for this implementation.
+
 ## Development
 ### Setup
 ```
