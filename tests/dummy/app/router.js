@@ -6,9 +6,9 @@ const Router = Ember.Router.extend({
 })
 
 Router.map(function () {
-  this.route('global-only')
-  this.route('local-only')
-  this.route('local-wins')
+  this.route('classic-global-only')
+  this.route('classic-local-only')
+  this.route('classic-local-wins')
   this.route('pods-global-only')
   this.route('pods-local-only')
   this.route('pods-local-wins')

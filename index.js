@@ -2,5 +2,5 @@
 'use strict'
 
 module.exports = {
-  name: 'ember-local-component-resolver'
+  name: 'ember-local-resolver'
 }

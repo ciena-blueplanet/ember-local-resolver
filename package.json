@@ -1,5 +1,5 @@
 {
-  "name": "ember-local-component-resolver",
+  "name": "ember-local-resolver",
   "version": "0.0.0",
   "description": "Turn {{a-route/local-component}} into {{local-component}}",
   "directories": {
@@ -13,7 +13,7 @@
     "eslint": "eslint *.js addon app blueprints config tests --fix",
     "lint": "npm run eslint"
   },
-  "repository": "https://github.com/ciena-blueplanet/ember-local-component-resolver",
+  "repository": "https://github.com/ciena-blueplanet/ember-local-resolver",
   "engines": {
     "node": ">= 5.3.0"
   },

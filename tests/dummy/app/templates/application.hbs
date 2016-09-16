@@ -1,17 +1,24 @@
-<h1>Classic</h1>
-
-<ul>
-  <li>{{link-to 'Route with Global Lookup' 'global-only'}}</li>
-  <li>{{link-to 'Route with Local Lookup' 'local-only'}}</li>
-  <li>{{link-to 'Route with Global and Local Lookup' 'local-wins'}}</li>
-</ul>
-
-<h1>Pods</h1>
-
-<ul>
-  <li>{{link-to 'Route with Global Lookup' 'pods-global-only'}}</li>
-  <li>{{link-to 'Route with Local Lookup' 'pods-local-only'}}</li>
-  <li>{{link-to 'Route with Global and Local Lookup' 'pods-local-wins'}}</li>
-</ul>
-
-{{outlet}}
+<div class='frost-modal-demo'>
+  <div class='frost-modal-demos'>
+    <div class='frost-modal-demo-title'>
+      Demos
+    </div>
+    <div class='frost-modal-demo-selectors'>
+      <div class='frost-modal-demo-selector-title'>
+        Classic
+        {{link-to 'Global lookup' 'classic-global-only'}}
+        {{link-to 'Local lookup' 'classic-local-only'}}
+        {{link-to 'Global and local lookup' 'classic-local-wins'}}
+      </div>
+      <div class='frost-modal-demo-selector-title'>
+        Pods
+        {{link-to 'Global lookup' 'pods-global-only'}}
+        {{link-to 'Local lookup' 'pods-local-only'}}
+        {{link-to 'Global and local lookup' 'pods-local-wins'}}
+      </div>
+    </div>
+  </div>
+  <div class='demo-content'>
+    {{outlet}}
+  </div>
+</div>
