@@ -4,9 +4,6 @@
 [cov-img]: https://img.shields.io/coveralls/ciena-frost/ember-local-resolver.svg "Coveralls Code Coverage"
 [cov-url]: https://coveralls.io/github/ciena-frost/ember-local-resolver
 
-[npm-img]: https://img.shields.io/npm/v/ember-local-resolver.svg "NPM Version"
-[npm-url]: https://www.npmjs.com/package/ember-local-resolver
-
 [ember-observer-badge]: http://emberobserver.com/badges/ember-local-resolver.svg "Ember Observer score"
 [ember-observer-badge-url]: http://emberobserver.com/addons/ember-local-resolver
 
@@ -17,12 +14,11 @@
 
 # ember-local-resolver
 
-Resolve component paths locally then globally to avoid the need for absolute paths
+Put local components / helpers where they belong
 
 ###### Dependencies
 
-![Ember][ember-img] TODO
-[![NPM][npm-img]][npm-url] TODO
+![Ember][ember-img]
 
 ###### Health
 
@@ -34,6 +30,7 @@ Resolve component paths locally then globally to avoid the need for absolute pat
 [![bitHound][bithound-img]][bithound-url]
 
 ###### Ember Observer score
+
 [![EmberObserver][ember-observer-badge]][ember-observer-badge-url]
 
 ## Installation
@@ -41,36 +38,75 @@ Resolve component paths locally then globally to avoid the need for absolute pat
 ember install ember-local-resolver
 ```
 
+## Purpose
+
+Rather than clutter your global components and helpers directories with components/helpers that are
+only used in a specific case, wouldn't it be nice to locate them alongside the consuming template?  
+
+*"That would great"*
+
+**You've come to the right place!**
+
 ## Usage
 
-Change the resolver import in app/resolver.js from `'ember-resolver'` to `'ember-local-resolver'`
+This addon makes the most sense in a pods structure (although classic is supported).
 
-This addon makes the most sense in a pods structure.  If you want to have components that are effectively
-"private" to a route simply add a `-components` directory to your route and add any local components in a
-pod format within that directory.
-
-For example, given a route `user-accounts` if you want to have a local `user-avatar` component then your
-pods structure would look something like:
+The standard Ember resolver looks up components and helpers from root directories
 
 ```
-user-accounts/
-user-accounts/route.js
-user-accounts/template.hbs
-user-accounts/-components/
-user-accounts/-components/user-avatar/
-user-accounts/-components/user-avatar/component.js
-user-accounts/-components/user-avatar/template.hbs
+app/components
+app/helpers
 ```
 
-Normally you would have to reference a component nested in a route using a full path:
+This works fine most of the time, but for complex apps you'll often want to create a number of
+components / helpers that are really only relevant to a particular route.  
 
-`{{user-accounts/-components/user-avatar}}`
+Unfortunately with the current resolver those components / helpers either have to live in the root 
+directories or you need to provide a nested path with `/` that both looks ugly and won't be supported 
+when angle-bracket components land.
 
-But with this resolver these local components can be referenced simply as:
+The module unification RFC solves this issue using the concept of [private collections](https://github.com/dgeb/rfcs/blob/module-unification/text/0000-module-unification.md#private-collections)
+which allows `-components` / `-helpers` in a feature pod to provide locally scoped private modules.
 
-`{{user-avatar}}`
+_Why wait_
 
-when within the `user-accounts` template
+This addon enables these capabilities today, so you can use a structure like:
+
+
+```
+app/user-account/route.js
+app/user-account/controller.js
+app/user-account/template.hbs
+app/user-account/-components/user-avatar/component.js
+app/user-account/-components/user-avatar/template.hbs
+app/user-account/-helpers/generate-moniker/helper.js
+```
+
+And use them within your `user-account` template as
+
+```
+{{user-avatar}}
+{{generate-moniker}}
+```
+
+That's it, now get out there and go have some _fun_!
+
+Oh yeah, there is a demo [here](http://ciena-blueplanet.github.io/ember-local-resolver/), just in case you care
+if - you know - _this actually works._
+
+## Order of resolution
+
+In the event that a local and global component / helper share a name, the local version wins when
+in the local template.
+
+You can also reference the global component / helper from within the local component's template,
+but please...for the sake of everyone's sanity...just rename one of them.
+
+## Generators
+
+Unfortunately, we don't have a fancy generator to make new local components / helpers _(cough...PRs welcome...)_
+so the easiest way to handle this is to just move a generated directory into your local `-components` / 
+`-helpers` path.
 
 ## Development
 ### Setup
