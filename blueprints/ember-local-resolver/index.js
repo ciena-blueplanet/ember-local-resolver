@@ -1,15 +1,5 @@
-/*jshint node:true*/
 module.exports = {
-  description: ''
+  name: 'ember-local-resolver',
 
-  // locals: function(options) {
-  //   // Return custom template variables here.
-  //   return {
-  //     foo: options.entity.options.foo
-  //   };
-  // }
-
-  // afterInstall: function(options) {
-  //   // Perform extra work here.
-  // }
-};
+  normalizeEntityName: function () {}
+}
