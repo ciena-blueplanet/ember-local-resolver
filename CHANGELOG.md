@@ -1,3 +1,7 @@
+# 0.1.2
+
+* Updated the README to remove the demo link
+
 # 0.1.1
 
 * Updated the execute permissions for the Travis scripts
