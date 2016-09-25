@@ -91,9 +91,6 @@ And use them within your `user-account` template as
 
 That's it, now get out there and go have some _fun_!
 
-Oh yeah, there is a demo [here](http://ciena-blueplanet.github.io/ember-local-resolver/), just in case you care
-if - you know - _this actually works._
-
 ## Order of resolution
 
 In the event that a local and global component / helper share a name, the local version wins when
