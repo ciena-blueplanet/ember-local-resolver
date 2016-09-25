@@ -1,6 +1,6 @@
 {
   "name": "ember-local-resolver",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Turn {{a-route/local-component}} into {{local-component}}",
   "directories": {
     "doc": "doc",
