@@ -1,3 +1,7 @@
+# 0.1.3
+
+* Adjusted wording in the README
+
 # 0.1.2
 
 * Updated the README to remove the demo link
