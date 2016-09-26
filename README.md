@@ -68,8 +68,6 @@ when angle-bracket components land.
 The module unification RFC solves this issue using the concept of [private collections](https://github.com/dgeb/rfcs/blob/module-unification/text/0000-module-unification.md#private-collections)
 which allows `-components` / `-helpers` in a feature pod to provide locally scoped private modules.
 
-_Why wait_
-
 This addon enables these capabilities today, so you can use a structure like:
 
 
